@@ -19,8 +19,13 @@ title('y(t)');
 % (2) plot the histogram of Gaussian white noise n(t)
 mean = 0;
 sigma = 1;
-N = 1000;
-n = sqrt(sigma) * randn(1, N);
+% another method generate noise
+% (1)
+% n = wgn(1, 1000, 1);
+% (2)
+% N = 1000;
+% n = sqrt(sigma) * randn(1, N);
+n = normrnd(mean, sigma, 1, 1000);
 figure, hist(n);
 xlabel('幅值');
 ylabel('频次');
@@ -29,12 +34,15 @@ title('高斯白噪声分布直方图');
 % (3) result
 [c, lags] = xcorr(x, y, 100);
 figure,
+subplot(2, 1, 1)
 stem(lags*0.001, c, '.')
+title('Cross-correlation function');
 fprintf('the Correlation of x(t), y(t) without noise in t0= is%6.6f\n', c(4));
 
 [c_n, lags_n] = xcorr(x, y + n(1:100), 100);
-figure,
-stem(lags_n*0.001, c_n, '.')
+subplot(2, 1, 2);
+stem(lags_n*0.001, c_n, '.');
+title('Cross-correlation function added noise');
 fprintf('the Correlation of x(t), y(t) added noise in t0= is%6.6f\n', c_n(4));
 
 
