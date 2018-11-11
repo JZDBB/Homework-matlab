@@ -1,0 +1,7 @@
+w0 = 100 * pi;
+t = 0:0.01:10;
+x = cos(w0 * t);
+y = cos(w0 * (t - 0.04));
+subplot(2,1,1);
+plot(x, t);
+subplot()
