@@ -44,7 +44,3 @@ subplot(2, 1, 2);
 stem(lags_n*0.001, c_n, '.');
 title('Cross-correlation function added noise');
 fprintf('the Correlation of x(t), y(t) added noise in t0= is%6.6f\n', c_n(4));
-
-
-
-
