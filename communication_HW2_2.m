@@ -3,15 +3,15 @@ Ts = 1/10000;
 t = Ts:Ts:time;
 lent = length(t);
 f0 = 1000;
-A0 = 1;
+A0 = 10;
 c = A0 * cos(2*pi*f0*t);
-fm = 100; %w(t)带宽100Hz？？
-w = cos(2*pi*fm*t);
+fm = 100;
+w = 5/lent * (1:lent) + cos(2*pi*fm*t);
 s = (w + c).^2;
 
 fs = 3000;
 f1=900;f3=1100;%通带截止频率上下限
-fsl=700;fsh=1300;%阻带截止频率上下限
+fsl=800;fsh=1200;%阻带截止频率上下限
 rp=0.1;rs=30;%通带边衰减DB值和阻带边衰减DB值
 wp1=2*pi*f1/fs;
 wp3=2*pi*f3/fs;
@@ -32,11 +32,9 @@ damps = [1 1 0 0];
 fl = 100;
 b = remez(fl, fbe, damps);
 m = 2 * filter(b, 1, x);
-subplot(4, 1, 1);
+subplot(3, 1, 1);
 plot(w);
-subplot(4, 1, 2);
-plot(v);
-subplot(4, 1, 3);
-plot(x);
-subplot(4, 1, 4);
-plot(m);
+subplot(3, 1, 2);
+plot(v(2500:3000));
+subplot(3, 1, 3);
+plot(m(1000:3000));
