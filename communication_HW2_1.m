@@ -1,4 +1,4 @@
-time = .3;
+ time = .3;
 Ts = 1/10000;
 t = Ts:Ts:time;
 lent = length(t);

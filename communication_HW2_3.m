@@ -22,7 +22,6 @@ b = remez(fl, fbe, damps);
 s1 = 2 * filter(b, 1, x1);
 s2 = 2 * filter(b, 1, x2);
 
-
 subplot(2, 1, 1);
 plot(t, m1);
 subplot(2, 1, 2);
