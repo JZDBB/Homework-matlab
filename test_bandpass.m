@@ -1,0 +1,14 @@
+f_s=3000;
+t=(1:f_s)/f_s;
+ff1=100;
+ff2=400;
+ff3=1000;
+x=sin(2*pi*ff1*t)+sin(2*pi*ff2*t)+sin(2*pi*ff3*t);
+figure;
+subplot(211);plot(t,x);
+subplot(212);hua_fft(x,f_s,1);
+% y=filter(bz1,az1,x);
+y=bandp(x,900,1100,800,1200,0.1,30,f_s);
+figure;
+subplot(211);plot(t,y);
+subplot(212);hua_fft(y,f_s,1);

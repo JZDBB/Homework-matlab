@@ -8,20 +8,8 @@ c = A0 * cos(2*pi*f0*t);
 fm = 100;
 w = cos(2*pi*fm*t);
 s = (w + c).^2;
+v = (1/2) * bandp(s, 900, 1100, 800, 1200, 0.1, 30, 1/Ts);
 
-fs = 3000;
-f1=900;f3=1100;%通带截止频率上下限
-fsl=800;fsh=1200;%阻带截止频率上下限
-rp=0.1;rs=30;%通带边衰减DB值和阻带边衰减DB值
-wp1=2*pi*f1/fs;
-wp3=2*pi*f3/fs;
-wsl=2*pi*fsl/fs;
-wsh=2*pi*fsh/fs;
-wp=[wp1 wp3];
-ws=[wsl wsh];
-[n,wn]=cheb1ord(ws/pi,wp/pi,rp,rs);
-[bz1,az1]=cheby1(n,rp,wp/pi);
-v = 2 * filter(bz1, az1, s);
 
 gamma = 0;
 phi = 0;
@@ -32,7 +20,15 @@ damps = [1 1 0 0];
 fl = 100;
 b = remez(fl, fbe, damps);
 m = 2 * filter(b, 1, x);
-subplot(2, 1, 1);
-plot(w);
-subplot(2, 1, 2);
-plot(m);
+subplot(4, 1, 1);
+plot(t, w);
+title('原始信号w(t)');
+subplot(4, 1, 2);
+plot(t, c);
+title('载波信号c(t)');
+subplot(4, 1, 3);
+plot(t, v)
+title('已调信号v(t) = {A_0}w(t)cos(2{\pi}{f_c}t)');
+subplot(4, 1, 4);
+plot(t, m);
+title('解调信号m(t)');
