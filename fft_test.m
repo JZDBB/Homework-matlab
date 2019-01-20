@@ -2,8 +2,6 @@ f = imread('airfield.bmp');
 img = f(1:8, 1:8);
 imwrite(img, '1.bmp');
 
-
-
 F = fft2(f);
 S = abs(F);
 imshow(S,[]);
