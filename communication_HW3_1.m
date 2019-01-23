@@ -14,3 +14,5 @@ for k = 1:n-1
     a(k+1) = a(k) - mu * mean(avec);
 end
 
+subplot(3, 1, 1)
+
